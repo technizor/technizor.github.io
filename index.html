@@ -2,18 +2,78 @@
 <html>
 <body>
 <h1>IV Probability Calculator</h1></br>
-<h2>Wild Encounter</h2>
-<form id="ivForm" action="" method="">
-HP: <input type="text" size="2" name="hpIv" value="31">
-Atk: <input type="text" size="2" name="atkIv" value="31">
-Def: <input type="text" size="2" name="defIv" value="31">
-SpA: <input type="text" size="2" name="spAIv" value="31">
-SpD: <input type="text" size="2" name="spDIv" value="31">
-Spe: <input type="text" size="2" name="speIv" value="31"></br>
-Max: <input type="text" size="2" name="lockIv" value="0">
-<button type="button" id="genButton" onclick="generateIvs()">Calculate</button></br>
+<form id="genForm" name="genForm" action="" method="">
+<h4>Wild Encounter</h4>
+Input your desired IV spread (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).</br>
+Locked IVs are either 0 in a normal case, or 3 for members of Undiscovered Egg group.
+<table><tr>
+    <td>
+        <table><tr>
+            <td align="right">HP: <input type="text" size="2" id="gHp" value="31"></td>
+            <td align="right">Atk: <input type="text" size="2" id="gAtk" value="31"></td>
+            <td align="right">Def: <input type="text" size="2" id="gDef" value="31"></td>
+        </tr><tr>
+            <td align="right">SpA: <input type="text" size="2" id="gSpA" value="31"></td>
+            <td align="right">SpD: <input type="text" size="2" id="gSpD" value="31"></td>
+            <td align="right">Spe: <input type="text" size="2" id="gSpe" value="31"></td>
+        </tr></table>
+    </td><td>
+        Locked IVs: <input type="text" size="2" id="gLock" value="0"></br>
+        <button type="button" id="genButton" onclick="generateIvs()">Calculate</button>
+    </td>
+</tr></table>
+<p id="genOut"></p>
 </form>
-<p id="output"></p>
+<form id="breedForm" name="breedForm" action="" method="">
+<h4>Breeding</h4>
+Input both parent IV spreads (0-31 only), and your desired child IV spreads (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).</br>
+Inherited IVs are either 3 in a normal case, or 5 when using Destiny Knot. (No Power Items for now).
+<table><tr>
+    <td align="center">
+        <h4>Father's IV Spread</h4>
+        <table><tr>
+            <td align="right">HP: <input type="text" size="2" id="fHp" value="31"></td>
+            <td align="right">Atk: <input type="text" size="2" id="fAtk" value="31"></td>
+            <td align="right">Def: <input type="text" size="2" id="fDef" value="31"></td>
+        </tr><tr>
+            <td align="right">SpA: <input type="text" size="2" id="fSpA" value="31"></td>
+            <td align="right">SpD: <input type="text" size="2" id="fSpD" value="31"></td>
+            <td align="right">Spe: <input type="text" size="2" id="fSpe" value="31"></td>
+        </tr></table>
+    </td><td align="center">
+        <h4>Mother's IV Spread</h4>
+        <table><tr>
+            <td align="right">HP: <input type="text" size="2" id="fHp" value="31"></td>
+            <td align="right">Atk: <input type="text" size="2" id="fAtk" value="31"></td>
+            <td align="right">Def: <input type="text" size="2" id="fDef" value="31"></td>
+        </tr><tr>
+            <td align="right">SpA: <input type="text" size="2" id="fSpA" value="31"></td>
+            <td align="right">SpD: <input type="text" size="2" id="fSpD" value="31"></td>
+            <td align="right">Spe: <input type="text" size="2" id="fSpe" value="31"></td>
+        </tr></table>
+    </td><td align="center">
+        <h4>Desired IV Spread</h4>
+        <table><tr>
+            <td align="right">HP: <input type="text" size="2" id="dHp" value="31"></td>
+            <td align="right">Atk: <input type="text" size="2" id="dAtk" value="31"></td>
+            <td align="right">Def: <input type="text" size="2" id="dDef" value="31"></td>
+        </tr><tr>
+            <td align="right">SpA: <input type="text" size="2" id="dSpA" value="31"></td>
+            <td align="right">SpD: <input type="text" size="2" id="dSpD" value="31"></td>
+            <td align="right">Spe: <input type="text" size="2" id="dSpe" value="31"></td>
+        </tr></table>
+    </td>
+</tr><tr>
+    <td>
+        Inherited IVs: <input type="text" size="2" id="dLock" value="3">
+    </td><td>
+        <button type="button" id="breedButton" onclick="breedIvs()">Calculate</button>
+    </td>
+</tr></table>
+<p id="breedOut"></p>
+</form>
+</br></br>
+Copyright Sherman Ying 2015.
 <script id="generateWorker" type="javascript/worker">
 const MAX = 31;
 const LOCK = 32;
@@ -29,6 +89,7 @@ function generate(lock, spread) {
 	var iv = [0,0,0,0,0,0];
     var event = {nd : generate1(lock, spread, iv, 0, 0)};
 	postMessage(event);
+    return event.data.nd;
 }
 
 function generate1(nm, ds, iv, mc, n) {
@@ -88,12 +149,12 @@ const MOTHER = 33;
 onmessage = function(event) {
     breed(event.data.lock, event.data.spread, event.data.father, event.data.mother);
 };
-function breed(locked, spread, father, mother) {
+function breed(lock, spread, father, mother) {
 	'use strict';
 	var iv = [0,0,0,0,0,0];
     var event = {nd : breed1(lock, spread, father, mother, iv, 0, 0)};
 	postMessage(event);
-	return nd;
+	return event.data.nd;
 }
 
 function breed1(nm, ds, fs, ms, iv, mc, n) {
@@ -109,7 +170,7 @@ function breed1(nm, ds, fs, ms, iv, mc, n) {
         {
             if (n < 5)
             {
-				var cp = breed(nm, ds, fs, ms, iv, mc, n + 1);
+				var cp = breed1(nm, ds, fs, ms, iv, mc, n + 1);
 				nd[0] += cp[0];
 				nd[1] += cp[1];
 			} else if (mc == nm)
@@ -145,31 +206,160 @@ function breed1(nm, ds, fs, ms, iv, mc, n) {
 	return nd;
 }
 </script>
-<script>
+<script id="submissionForm">
 const MAX = 31;
 const EVEN = 32;
 const ODD = 33;
 const ANY = 34;
 
+function breedIvs() {
+    'use strict';
+    document.getElementById('breedOut').innerHTML = '';
+    document.getElementById('breedButton').innerHTML = 'Calculating';
+    document.getElementById('breedButton').disabled = true;
+    var inputs = document.getElementById('breedForm').getElementsByTagName('input');
+    var father = [ 0, 0, 0, 0, 0, 0 ];
+    var mother = [ 0, 0, 0, 0, 0, 0 ];
+    var spread = [ 0, 0, 0, 0, 0, 0 ];
+    for(var i = 0; i < 6; i++)
+    {
+        var val = inputs[i].value;
+        father[i] = parseInt(val,10);
+        if(isNaN(father[i]))
+        {
+            father[i] = 0;
+            inputs[i].value = 0;
+        } else if (father[i] < 0)
+        {
+            father[i] = 0;
+            inputs[i+6].value = 0;
+        } else if (father[i] > MAX)
+        {
+            father[i] = MAX;
+            inputs[i].value = MAX;
+        }
+    }
+    for(var i = 0; i < 6; i++)
+    {
+        var val = inputs[i+6].value;
+        mother[i] = parseInt(val,10);
+        if(isNaN(mother[i]))
+        {
+            mother[i] = 0;
+            inputs[i+6].value = 0;
+        } else if (mother[i] < 0)
+        {
+            mother[i] = 0;
+            inputs[i+6].value = 0;
+        } else if (mother[i] > MAX)
+        {
+            mother[i] = MAX;
+            inputs[i+6].value = MAX;
+        }
+    }
+    for(var i = 0; i < 6; i++)
+    {
+        var val = inputs[i+12].value;
+        spread[i] = parseInt(val,10);
+        if(isNaN(spread[i]))
+        {
+            if(val == 'x' || val == 'X')
+            {
+                spread[i] = ANY;
+            } else if(val == 'e' || val == 'E')
+            {
+                spread[i] = EVEN;
+            } else if(val == 'o' || val == 'O')
+            {
+                spread[i] = ODD;
+            } else
+            {
+                spread[i] = ANY;
+                inputs[i+12].value = 'x';
+            }
+        } else if (spread[i] < 0)
+        {
+            spread[i] = 0;
+            inputs[i+12].value = 0;
+        } else if (spread[i] > MAX)
+        {
+            spread[i] = MAX;
+            inputs[i+12].value = MAX;
+        }
+    }
+    var lock = parseInt(inputs[18].value,10);
+    if(isNaN(lock))
+    {
+        lock = 3;
+        inputs[18].value = 3;
+    } else if(lock != 5 && lock != 3)
+    {
+        lock = 3;
+        inputs[18].value = 3;
+    }
+    
+    var blob = new Blob([
+          document.querySelector('#breedWorker').textContent
+        ], { type: "text/javascript" });
+    
+    if(typeof(Worker) !== 'undefined')
+    {
+        var worker = new Worker(window.URL.createObjectURL(blob));
+        worker.onmessage = function (event) {
+            var nd = event.data.nd;
+            breedUpdate(nd);
+            worker.terminate();
+        };
+        var event = {lock : lock, spread: spread, father: father, mother: mother};
+        worker.postMessage(event);
+    } else
+    {
+        var aScript = document.createElement('script');
+        aScript.setAttribute("id","bScr");
+        aScript.setAttribute("type","text/javascript");
+        aScript.setAttribute("src", windowURL.createObjectURL(blob));
+        var nd = breed(lock, spread, father, mother);
+        breedUpdate(nd);
+        document.removeElementById("bScr");
+    }
+}
+function breedUpdate(nd)
+{
+    var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
+    var g = gcd(nd[0],nd[1]);
+    if(g > 1)
+    {
+        var rnd = [nd[0]/g,nd[1]/g];
+        document.getElementById("breedOut").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + " = " + rnd[0] + "/" + rnd[1] + ", approx. " + p +"%";
+    } else
+    {
+        document.getElementById("breedOut").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
+    }
+    document.getElementById('breedButton').innerHTML = 'Calculate';
+    document.getElementById('breedButton').disabled = false;
+}
+
+
 function generateIvs() {
     'use strict';
-    document.getElementById('output').innerHTML = '';
+    document.getElementById('genOut').innerHTML = '';
     document.getElementById('genButton').innerHTML = 'Calculating';
     document.getElementById('genButton').disabled = true;
     var spread = [ 0, 0, 0, 0, 0, 0 ];
-    var inputs = document.getElementsByTagName('input');
+    var inputs = document.getElementById('genForm').getElementsByTagName('input');
     for(var i = 0; i < 6; i++)
     {
-        spread[i] = parseInt(inputs[i].value,10);
+        var val = inputs[i].value;
+        spread[i] = parseInt(val,10);
         if(isNaN(spread[i]))
         {
-            if(spread[i] == 'x' || spread[i] == 'X')
+            if(val == 'x' || val == 'X')
             {
                 spread[i] = ANY;
-            } else if(spread[i] == 'e' || spread[i] == 'E')
+            } else if(val == 'e' || val == 'E')
             {
                 spread[i] = EVEN;
-            } else if(spread[i] == 'o' || spread[i] == 'O')
+            } else if(val == 'o' || val == 'O')
             {
                 spread[i] = ODD;
             } else
@@ -224,6 +414,7 @@ function generateIvs() {
         aScript.setAttribute("src", windowURL.createObjectURL(blob));
         var nd = generate(lock, spread);
         genUpdate(nd);
+        document.removeElementById("aScr");
     }
 }
 function genUpdate(nd)
@@ -233,14 +424,13 @@ function genUpdate(nd)
     if(g > 1)
     {
         var rnd = [nd[0]/g,nd[1]/g];
-        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + " = " + rnd[0] + "/" + rnd[1] + ", approx. " + p +"%";
+        document.getElementById("genOut").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + " = " + rnd[0] + "/" + rnd[1] + ", approx. " + p +"%";
     } else
     {
-        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
+        document.getElementById("genOut").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
     }
     document.getElementById('genButton').innerHTML = 'Calculate';
     document.getElementById('genButton').disabled = false;
-    document.removeElementById("aScr");
 }
 function gcd(a,b)
 {

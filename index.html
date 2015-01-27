@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
+<h1>IV Probability Calculator</h1></br>
+<h2>Wild Encounter</h2>
 <form id="ivForm" action="" method="">
 HP: <input type="text" size="2" name="hpIv" value="31">
 Atk: <input type="text" size="2" name="atkIv" value="31">
@@ -9,24 +11,23 @@ SpA: <input type="text" size="2" name="spAIv" value="31">
 SpD: <input type="text" size="2" name="spDIv" value="31">
 Spe: <input type="text" size="2" name="speIv" value="31"></br>
 Max: <input type="text" size="2" name="lockIv" value="0">
-<button type="button" id="calcButton" onclick="calcIvs()">Calculate</button></br>
+<button type="button" id="genButton" onclick="generateIvs()">Calculate</button></br>
 </form>
 <p id="output"></p>
-<script id="worker" type="javascript/worker">
-
+<script id="generateWorker" type="javascript/worker">
 const MAX = 31;
 const EVEN = 32;
 const ODD = 33;
 const ANY = 34;
 
-onmessage = function(message) {
-    generate(message.data.lock, message.data.spread);
+onmessage = function(event) {
+    generate(event.data.lock, event.data.spread);
 };
 function generate(lock, spread) {
 	'use strict';
 	var iv = [0,0,0,0,0,0];
-    var message = {nd : generate1(lock, spread, iv, 0, 0)};
-	postMessage(message);
+    var event = {nd : generate1(lock, spread, iv, 0, 0)};
+	postMessage(event);
 }
 
 function generate1(nm, ds, iv, mc, n) {
@@ -66,17 +67,81 @@ function generate1(nm, ds, iv, mc, n) {
 	return nd;
 }
 </script>
+<script id="breedWorker" type="javascript/worker">
+const MAX = 31;
+const EVEN = 32;
+const ODD = 33;
+const ANY = 34;
+const FATHER = 32;
+const MOTHER = 33;
+
+onmessage = function(event) {
+    breed(event.data.lock, event.data.spread, event.data.father, event.data.mother);
+};
+function breed(locked, spread, father, mother) {
+	'use strict';
+	var iv = [0,0,0,0,0,0];
+    var event = {nd : breed1(lock, spread, father, mother, iv, 0, 0)};
+	postMessage(event);
+	return nd;
+}
+
+function breed1(nm, ds, fs, ms, iv, mc, n) {
+    'use strict';
+    var nd = [0,0];
+	for (var stat = 0; stat <= MOTHER; stat++) {
+		iv[n] = stat;
+		if (iv[n] == MOTHER || iv[n] == FATHER)
+        {
+			mc++;
+        }
+		if (mc + 5 - n >= nm)
+        {
+            if (n < 5)
+            {
+				var cp = breed(nm, ds, fs, ms, iv, mc, n + 1);
+				nd[0] += cp[0];
+				nd[1] += cp[1];
+			} else
+            {
+				boolean p = true;
+				for (var s = 0; p && s < 6; s++)
+                {
+					var bs = iv[s];
+					if(bs == FATHER)
+					{
+                        bs = fs[s];
+					} else if (bs == MOTHER)
+                    {
+						bs = ms[s];
+					}
+                    if ((ds[s] <= MAX && ds[s] != bs) || (ds[s] == EVEN && bs % 2 !== 0) || (ds[s] == ODD && bs % 2 !== 1))
+                    {
+						p = false;
+                    }
+				}
+				if (p)
+                {
+					nd[0]++;
+                }
+				nd[1]++;
+			}
+		}
+	}
+	return nd;
+}
+</script>
 <script>
 const MAX = 31;
 const EVEN = 32;
 const ODD = 33;
 const ANY = 34;
 
-function calcIvs() {
+function generateIvs() {
     'use strict';
     document.getElementById('output').innerHTML = '';
-    document.getElementById('calcButton').innerHTML = 'Calculating';
-    document.getElementById('calcButton').disabled = true;
+    document.getElementById('genButton').innerHTML = 'Calculating';
+    document.getElementById('genButton').disabled = true;
     var spread = [ 0, 0, 0, 0, 0, 0 ];
     var inputs = document.getElementsByTagName('input');
     for(var i = 0; i < 6; i++)
@@ -124,25 +189,34 @@ function calcIvs() {
     }
 
     var blob = new Blob([
-          document.querySelector('#worker').textContent
+          document.querySelector('#generateWorker').textContent
         ], { type: "text/javascript" })
     
     if(typeof(Worker) !== 'undefined')
     {
         var worker = new Worker(window.URL.createObjectURL(blob));
-        worker.onmessage = function (message) {
-            var nd = message.data.nd;
+        worker.onmessage = function (event) {
+            var nd = event.data.nd;
             var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
             document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
-            document.getElementById('calcButton').innerHTML = 'Calculate';
-            document.getElementById('calcButton').disabled = false;
+            document.getElementById('genButton').innerHTML = 'Calculate';
+            document.getElementById('genButton').disabled = false;
             worker.terminate();
         };
-        var message = {lock : lock, spread: spread};
-        worker.postMessage(message);
+        var event = {lock : lock, spread: spread};
+        worker.postMessage(event);
     } else
     {
-        
+        var aScript = document.createElement('script');
+        aScript.setAttribute("id","aScr");
+        aScript.setAttribute("type","text/javascript");
+        aScript.setAttribute("src", windowURL.createObjectURL(blob));
+        var nd = generate(lock, spread);
+        document.removeElementById("aScr");
+        var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
+        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
+        document.getElementById('genButton').innerHTML = 'Calculate';
+        document.getElementById('genButton').disabled = false;
     }
 }
 </script>

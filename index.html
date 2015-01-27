@@ -16,6 +16,7 @@ Max: <input type="text" size="2" name="lockIv" value="0">
 <p id="output"></p>
 <script id="generateWorker" type="javascript/worker">
 const MAX = 31;
+const LOCK = 32;
 const EVEN = 32;
 const ODD = 33;
 const ANY = 34;
@@ -33,9 +34,9 @@ function generate(lock, spread) {
 function generate1(nm, ds, iv, mc, n) {
 	'use strict';
 	var nd = [0,0];
-	for (var stat = 0; stat <= MAX; stat++) {
+	for (var stat = 0; stat <= LOCK; stat++) {
 		iv[n] = stat;
-		if (iv[n] == MAX)
+		if (iv[n] == LOCK)
         {
 			mc++;
         }
@@ -46,12 +47,17 @@ function generate1(nm, ds, iv, mc, n) {
 				var cp = generate1(nm, ds, iv, mc, n + 1);
 				nd[0] += cp[0];
 				nd[1] += cp[1];
-			} else
+			} else if (mc == nm)
             {
 				var p = true;
 				for (var s = 0; p && s < 6; s++)
                 {
-					if ((ds[s] <= MAX && ds[s] != iv[s]) || (ds[s] == EVEN && iv[s] % 2 !== 0)|| (ds[s] == ODD && iv[s] % 2 !== 1))
+					var bs = iv[s];
+					if(bs == LOCK)
+					{
+                        bs = MAX;
+					}
+                    if ((ds[s] <= MAX && ds[s] != bs) || (ds[s] == EVEN && bs % 2 !== 0) || (ds[s] == ODD && bs % 2 !== 1))
                     {
 						p = false;
                     }
@@ -63,6 +69,10 @@ function generate1(nm, ds, iv, mc, n) {
 				nd[1]++;
 			}
 		}
+		if (iv[n] == LOCK)
+        {
+			mc--;
+        }
 	}
 	return nd;
 }
@@ -102,9 +112,9 @@ function breed1(nm, ds, fs, ms, iv, mc, n) {
 				var cp = breed(nm, ds, fs, ms, iv, mc, n + 1);
 				nd[0] += cp[0];
 				nd[1] += cp[1];
-			} else
+			} else if (mc == nm)
             {
-				boolean p = true;
+				var p = true;
 				for (var s = 0; p && s < 6; s++)
                 {
 					var bs = iv[s];
@@ -127,6 +137,10 @@ function breed1(nm, ds, fs, ms, iv, mc, n) {
 				nd[1]++;
 			}
 		}
+		if (iv[n] == MOTHER || iv[n] == FATHER)
+        {
+			mc--;
+        }
 	}
 	return nd;
 }
@@ -190,7 +204,7 @@ function generateIvs() {
 
     var blob = new Blob([
           document.querySelector('#generateWorker').textContent
-        ], { type: "text/javascript" })
+        ], { type: "text/javascript" });
     
     if(typeof(Worker) !== 'undefined')
     {

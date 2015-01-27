@@ -211,10 +211,7 @@ function generateIvs() {
         var worker = new Worker(window.URL.createObjectURL(blob));
         worker.onmessage = function (event) {
             var nd = event.data.nd;
-            var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
-            document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
-            document.getElementById('genButton').innerHTML = 'Calculate';
-            document.getElementById('genButton').disabled = false;
+            genUpdate(nd);
             worker.terminate();
         };
         var event = {lock : lock, spread: spread};
@@ -226,12 +223,36 @@ function generateIvs() {
         aScript.setAttribute("type","text/javascript");
         aScript.setAttribute("src", windowURL.createObjectURL(blob));
         var nd = generate(lock, spread);
-        document.removeElementById("aScr");
-        var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
-        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
-        document.getElementById('genButton').innerHTML = 'Calculate';
-        document.getElementById('genButton').disabled = false;
+        genUpdate(nd);
     }
+}
+function genUpdate(nd)
+{
+    var p = Math.round(1000000.0 * nd[0] / nd[1])/10000;
+    var g = gcd(nd[0],nd[1]);
+    if(g > 1)
+    {
+        var rnd = [nd[0]/g,nd[1]/g];
+        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + " = " + rnd[0] + "/" + rnd[1] + ", approx. " + p +"%";
+    } else
+    {
+        document.getElementById("output").innerHTML = "Chance: " + nd[0] + "/" + nd[1] + ", approx. " + p +"%";
+    }
+    document.getElementById('genButton').innerHTML = 'Calculate';
+    document.getElementById('genButton').disabled = false;
+    document.removeElementById("aScr");
+}
+function gcd(a,b)
+{
+    if(a == 0)
+    {
+        return b;
+    }
+    if(b == 0)
+    {
+        return a;
+    }
+    return gcd(b, a%b);
 }
 </script>
 

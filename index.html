@@ -207,6 +207,9 @@ function breed1(nm, ds, fs, ms, iv, mc, n) {
 }
 </script>
 <script id="submissionForm">
+if (navigator.serviceWorker) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+}
 const MAX = 31;
 const EVEN = 32;
 const ODD = 33;

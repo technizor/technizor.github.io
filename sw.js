@@ -2,8 +2,9 @@ var APP_PREFIX = 'IV-Probability_'     // Identifier for this app (this needs to
 var VERSION = 'version_01'              // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [                            // Add URL you want to cache in this list.
-    './',                     // If you have separate JS/CSS files,
-    './index.html'            // add path to those files here
+    './', // alias for index.html
+    './index.html',
+    './manifest.webmanifest', // manifest
 ]
 
 // Respond with cached resources

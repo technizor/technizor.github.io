@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>IV Probability Calculator</title>
+        <link rel="icon" href="/images/icon-192.png">
         <link rel="manifest" href="/manifest.webmanifest">
         <link rel="canonical" href="https://technizor.dev/{repository}/" />
         <link rel="canonical" href="https://technizor.github.io/" />
     </head>
 <body>
-<h1>IV Probability Calculator</h1></br>
+<h1>IV Probability Calculator</h1><br>
 <form id="genForm" name="genForm" action="" method="">
 <h4>Wild Encounter</h4>
-Input your desired IV spread (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).</br>
+Input your desired IV spread (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).<br>
 Locked IVs are either 0 in a normal case, or 3 for members of Undiscovered Egg group.
 <table><tr>
     <td>
@@ -23,7 +25,7 @@ Locked IVs are either 0 in a normal case, or 3 for members of Undiscovered Egg g
             <td align="right">Spe: <input type="text" size="2" id="gSpe" value="31"></td>
         </tr></table>
     </td><td>
-        Locked IVs: <input type="text" size="2" id="gLock" value="0"></br>
+        Locked IVs: <input type="text" size="2" id="gLock" value="0"><br>
         <button type="button" id="genButton" onclick="generateIvs()">Calculate</button>
     </td>
 </tr></table>
@@ -31,7 +33,7 @@ Locked IVs are either 0 in a normal case, or 3 for members of Undiscovered Egg g
 </form>
 <form id="breedForm" name="breedForm" action="" method="">
 <h4>Breeding</h4>
-Input both parent IV spreads (0-31 only), and your desired child IV spreads (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).</br>
+Input both parent IV spreads (0-31 only), and your desired child IV spreads (0-31 for a specific value, "x" for wildcard, "e" for forced even, and "o" for forced odd).<br>
 Inherited IVs are either 3 in a normal case, or 5 when using Destiny Knot. (No Power Items for now).
 <table><tr>
     <td align="center">
@@ -77,7 +79,7 @@ Inherited IVs are either 3 in a normal case, or 5 when using Destiny Knot. (No P
 </tr></table>
 <p id="breedOut"></p>
 </form>
-</br></br>
+<br><br>
 Copyright Sherman Ying 2015.
 <script id="generateWorker" type="javascript/worker">
 const MAX = 31;

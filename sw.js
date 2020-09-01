@@ -1,11 +1,12 @@
 var APP_PREFIX = 'IV-Probability_'     // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = 'version_04'              // Version of the off-line cache (change this value everytime you want to update cache)
+var VERSION = 'version_05'              // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [                            // Add URL you want to cache in this list.
     './', // alias for index.html
     './index.html',
     './manifest.webmanifest', // manifest
-    './images/icon-144.png' // icon
+    './images/icon-192.png', // icon
+    './images/icon-512.png' // icon
 ]
 
 // Respond with cached resources

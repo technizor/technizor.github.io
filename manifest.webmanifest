@@ -2,7 +2,13 @@
     "short_name": "IV Probability Calculator",
     "name": "IV Probability Calculator: What are the odds?",
     "description": "Calculate the odds of getting specific IV spreads and/or Hidden Power types",
-    "icons": [],
+    "icons": [
+        {
+            "src": "/images/icon-144.png",
+            "type": "image/png",
+            "sizes": "144x144"
+        }
+    ],
     "start_url": "/",
     "background_color": "#000000",
     "display": "standalone",

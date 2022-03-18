@@ -1,18 +1,12 @@
-var APP_PREFIX = 'IV-Probability_' // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = 'version_06' // Version of the off-line cache (change this value everytime you want to update cache)
+var APP_PREFIX = 'IV-Probability_'     // Identifier for this app (this needs to be consistent across every cache update)
+var VERSION = 'version_05'              // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
-var URLS = [ // Add URL you want to cache in this list.
-    // Page
+var URLS = [                            // Add URL you want to cache in this list.
     './', // alias for index.html
     './index.html',
-    // Manifest
-    './manifest.webmanifest',
-    './images/icon-192.png',
-    './images/icon-512.png',
-    // Scripts
-    './js/bw.js',
-    './js/form.js',
-    './js/gw.js',
+    './manifest.webmanifest', // manifest
+    './images/icon-192.png', // icon
+    './images/icon-512.png' // icon
 ]
 
 // Respond with cached resources
@@ -23,7 +17,7 @@ self.addEventListener('fetch', function (e) {
             if (request) { // if cache is available, respond with cache
                 console.log('responding with cache : ' + e.request.url)
                 return request
-            } else { // if there are no cache, try fetching request
+            } else {       // if there are no cache, try fetching request
                 console.log('file is not cached, fetching : ' + e.request.url)
                 return fetch(e.request)
             }

@@ -4,7 +4,7 @@
     "description": "Tracking final callouts for Acquisition and Exhibition",
     "icons": [
         {
-            "src": "/img/200px/guardian.png",
+            "src": "img/200px/guardian.png",
             "type": "image/png",
             "sizes": "200x200"
         }

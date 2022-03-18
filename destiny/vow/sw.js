@@ -1,37 +1,39 @@
 var APP_PREFIX = 'D2-VotD-Symbol_' // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = 'version_00' // Version of the off-line cache (change this value everytime you want to update cache)
+var VERSION = 'version_01' // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [ // Add URL you want to cache in this list.
     './', // alias for index.html
     './index.html',
+    './style.css', // stylesheet
     './manifest.webmanifest', // manifest
-    './img/200px/neutral.png', // asset
-    './img/200px/ascendant_plane.png', // asset
-    './img/200px/black_fleet.png', // asset
-    './img/200px/black_garden.png', // asset
-    './img/200px/black_heart.png', // asset
-    './img/200px/commune.png', // asset
-    './img/200px/darkness.png', // asset
-    './img/200px/drink.png', // asset
-    './img/200px/earth.png', // asset
-    './img/200px/enter.png', // asset
-    './img/200px/give.png', // asset
-    './img/200px/grief.png', // asset
-    './img/200px/guardian.png', // asset
-    './img/200px/hive.png', // asset
-    './img/200px/kill.png', // asset
-    './img/200px/knowledge.png', // asset
-    './img/200px/light.png', // asset
-    './img/200px/love.png', // asset
-    './img/200px/pyramid.png', // asset
-    './img/200px/savathun.png', // asset
-    './img/200px/scorn.png', // asset
-    './img/200px/stop.png', // asset
-    './img/200px/tower.png', // asset
-    './img/200px/traveler.png', // asset
-    './img/200px/witness.png', // asset
-    './img/200px/worm.png', // asset
-    './img/200px/worship.png', // asset
+    // Assets
+    './img/200px/neutral.png', 
+    './img/200px/ascendant_plane.png', 
+    './img/200px/black_fleet.png', 
+    './img/200px/black_garden.png', 
+    './img/200px/black_heart.png', 
+    './img/200px/commune.png', 
+    './img/200px/darkness.png', 
+    './img/200px/drink.png', 
+    './img/200px/earth.png', 
+    './img/200px/enter.png', 
+    './img/200px/give.png', 
+    './img/200px/grief.png', 
+    './img/200px/guardian.png', 
+    './img/200px/hive.png', 
+    './img/200px/kill.png', 
+    './img/200px/knowledge.png', 
+    './img/200px/light.png', 
+    './img/200px/love.png', 
+    './img/200px/pyramid.png', 
+    './img/200px/savathun.png', 
+    './img/200px/scorn.png', 
+    './img/200px/stop.png', 
+    './img/200px/tower.png', 
+    './img/200px/traveler.png', 
+    './img/200px/witness.png', 
+    './img/200px/worm.png', 
+    './img/200px/worship.png',
 ]
 
 // Respond with cached resources

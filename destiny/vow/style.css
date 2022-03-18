@@ -1,9 +1,15 @@
 * {
     box-sizing: border-box;
 }
+
 body {
     background: #111;
     color: #ddd;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a[href] {
+    color: cornflowerblue;
 }
 
 .symbol-grid {
@@ -22,6 +28,7 @@ body {
     border: 1px solid #ddd;
     overflow: auto;
     float: left;
+    position: relative;
 }
 
 .symbol label {

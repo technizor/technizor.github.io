@@ -1,0 +1,18 @@
+{
+    "short_name": "D2 VotD - Symbol Tracker",
+    "name": "Vow of the Disciple - Symbol Tracker",
+    "description": "Tracking final callouts for Acquisition and Exhibition",
+    "icons": [
+        {
+            "src": "/img/200px/guardian.png",
+            "type": "image/png",
+            "sizes": "200x200"
+        }
+    ],
+    "start_url": "/destiny/vow/",
+    "background_color": "#000000",
+    "display": "standalone",
+    "scope": "/destiny/vow/",
+    "theme_color": "#000000",
+    "shortcuts": []
+}

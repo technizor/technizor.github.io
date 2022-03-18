@@ -7,9 +7,9 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="canonical" href="https://technizor.dev/{repository}/destiny/vow/" />
     <link rel="canonical" href="https://technizor.github.io/destiny/vow/" />
+    <script src="./sw-loader.js"></script>
 </head>
 <link href="style.css" rel="stylesheet">
-
 <body>
     <h1>Vow of the Disciple - Symbol Tracker</h1>
     <form id="symbolForm" name="symbolForm" action="" method="">
@@ -104,11 +104,6 @@
     Application Copyright Sherman Ying 2022.
     Icons by <a href="https://reddit.com/u/JonathanAndersonDUOc">/u/JonathanAndersonDUOc</a> - <a
         href="https://redd.it/tcdofg">Source</a>
-    <script>
-        if (navigator.serviceWorker) {
-            navigator.serviceWorker.register('/destiny/vow/sw.js')
-        }
-    </script>
 </body>
 
 </html>

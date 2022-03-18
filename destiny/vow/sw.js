@@ -1,7 +1,7 @@
-var APP_PREFIX = 'D2-VotD-Symbol_'     // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = 'version_00'              // Version of the off-line cache (change this value everytime you want to update cache)
+var APP_PREFIX = 'D2-VotD-Symbol_' // Identifier for this app (this needs to be consistent across every cache update)
+var VERSION = 'version_00' // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
-var URLS = [                            // Add URL you want to cache in this list.
+var URLS = [ // Add URL you want to cache in this list.
     './', // alias for index.html
     './index.html',
     './manifest.webmanifest', // manifest
@@ -43,7 +43,7 @@ self.addEventListener('fetch', function (e) {
             if (request) { // if cache is available, respond with cache
                 console.log('responding with cache : ' + e.request.url)
                 return request
-            } else {       // if there are no cache, try fetching request
+            } else { // if there are no cache, try fetching request
                 console.log('file is not cached, fetching : ' + e.request.url)
                 return fetch(e.request)
             }

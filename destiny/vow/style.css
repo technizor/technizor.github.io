@@ -1,0 +1,55 @@
+body {
+    background: #111;
+    color: #ddd;
+}
+
+.symbol-grid {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.symbol {
+    margin: 4px;
+    background-color: #111;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    overflow: auto;
+    float: left;
+}
+
+.symbol label {
+    float: left;
+    width: 100%;
+}
+
+.symbol label img {
+    max-width: 10em;
+    max-height: 10em;
+}
+
+.symbol label span {
+    background: rgba(16, 16, 16, 0);
+    font-weight: bold;
+    text-align: center;
+    padding: 3px 0px;
+    display: block;
+}
+
+.symbol label input {
+    position: absolute;
+    top: -20px;
+}
+
+.symbol input:hover+span {
+    background-color: #222;
+}
+
+.symbol input:checked+span {
+    background-color: #666;
+}
+
+.symbol input:checked:hover+span {
+    background-color: #666;
+}

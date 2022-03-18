@@ -5,7 +5,6 @@ var URLS = [ // Add URL you want to cache in this list.
     './', // alias for index.html
     './index.html',
     './manifest.webmanifest', // manifest
-    './img/200px/icon-192.png', // icon
     './img/200px/neutral.png', // asset
     './img/200px/ascendant_plane.png', // asset
     './img/200px/black_fleet.png', // asset

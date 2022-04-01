@@ -19,13 +19,14 @@ header {
     grid-template-columns: 1fr auto auto;
     align-items: center;
     gap: 1em;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 header h1 {
     margin-inline: 0.25em;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .control {
@@ -115,6 +116,7 @@ header h1 {
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .symbol label input {

@@ -68,6 +68,7 @@ a[href] {
 .symbol label img {
     max-width: 100%;
     max-height: calc(100% - 1em);
+    margin-top: 1em;
 }
 
 .symbol label span {

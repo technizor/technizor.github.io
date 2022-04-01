@@ -1,5 +1,5 @@
 var APP_PREFIX = 'D2-VotD-Symbol_' // Identifier for this app (this needs to be consistent across every cache update)
-var VERSION = 'version_04' // Version of the off-line cache (change this value everytime you want to update cache)
+var VERSION = 'version_05' // Version of the off-line cache (change this value everytime you want to update cache)
 var CACHE_NAME = APP_PREFIX + VERSION
 var URLS = [ // Add URL you want to cache in this list.
     './', // alias for index.html
@@ -34,6 +34,8 @@ var URLS = [ // Add URL you want to cache in this list.
     './img/200px/witness.png', 
     './img/200px/worm.png', 
     './img/200px/worship.png',
+    // Code
+    './js/control.js',
 ]
 
 // Respond with cached resources

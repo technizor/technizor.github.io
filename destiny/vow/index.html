@@ -7,103 +7,261 @@
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="canonical" href="https://technizor.dev/destiny/vow/" />
     <script src="sw-loader.js"></script>
+    <script src="js/control.js"></script>
     <link href="style.css" rel="stylesheet">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' data:; worker-src 'self'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
 <body>
-    <h1>Vow of the Disciple - Symbol Tracker</h1>
-    <form id="symbolForm" name="symbolForm" action="" method="">
-        <div class="symbol-grid">
-            <div class="symbol ascendant-plane">
-                <label><input type="checkbox"><span><div>Ascendant Plane</div><img
-                            src="img/200px/ascendant_plane.png"></span></label>
+    <main>
+        <header>
+            <h1>Vow of the Disciple - Symbol Tracker</h1>
+            <button class="control" data-action="open" data-target="infoPopup">&#x2139;</button>
+            <button class="control" data-action="open" data-target="bonusPopup">&#x1f9f0;</button>
+        </header>
+        <form id="symbolForm" name="symbolForm" action="" method="">
+            <div class="symbol-grid">
+                <div class="symbol ascendant-plane">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Ascendant Plane</div><img src="img/200px/ascendant_plane.png">
+                        </span></label>
+                </div>
+                <div class="symbol black-fleet">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Black Fleet</div><img src="img/200px/black_fleet.png">
+                        </span></label>
+                </div>
+                <div class="symbol black-garden">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Black Garden</div><img src="img/200px/black_garden.png">
+                        </span></label>
+                </div>
+                <div class="symbol black-heart">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Black Heart</div><img src="img/200px/black_heart.png">
+                        </span></label>
+                </div>
+                <div class="symbol commune">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Commune</div><img src="img/200px/commune.png">
+                        </span></label>
+                </div>
+                <div class="symbol darkness">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Darkness</div><img src="img/200px/darkness.png">
+                        </span></label>
+                </div>
+                <div class="symbol drink">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Drink</div><img src="img/200px/drink.png">
+                        </span></label>
+                </div>
+                <div class="symbol earth">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Earth</div><img src="img/200px/earth.png">
+                        </span></label>
+                </div>
+                <div class="symbol enter">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Enter</div><img src="img/200px/enter.png">
+                        </span></label>
+                </div>
+                <div class="symbol give">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Give</div><img src="img/200px/give.png">
+                        </span></label>
+                </div>
+                <div class="symbol grief">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Grief</div><img src="img/200px/grief.png">
+                        </span></label>
+                </div>
+                <div class="symbol guardian">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Guardian</div><img src="img/200px/guardian.png">
+                        </span></label>
+                </div>
+                <div class="symbol hive">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Hive</div><img src="img/200px/hive.png">
+                        </span></label>
+                </div>
+                <div class="symbol kill">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Kill</div><img src="img/200px/kill.png">
+                        </span></label>
+                </div>
+                <div class="symbol knowledge">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Knowledge</div><img src="img/200px/knowledge.png">
+                        </span></label>
+                </div>
+                <div class="symbol light">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Light</div><img src="img/200px/light.png">
+                        </span></label>
+                </div>
+                <div class="symbol love">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Love</div><img src="img/200px/love.png">
+                        </span></label>
+                </div>
+                <div class="symbol pyramid">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Pyramid</div><img src="img/200px/pyramid.png">
+                        </span></label>
+                </div>
+                <div class="symbol savathun">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Savathun</div><img src="img/200px/savathun.png">
+                        </span></label>
+                </div>
+                <div class="symbol scorn">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Scorn</div><img src="img/200px/scorn.png">
+                        </span></label>
+                </div>
+                <div class="symbol stop">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Stop</div><img src="img/200px/stop.png">
+                        </span></label>
+                </div>
+                <div class="symbol tower">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Tower</div><img src="img/200px/tower.png">
+                        </span></label>
+                </div>
+                <div class="symbol traveler">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Traveler</div><img src="img/200px/traveler.png">
+                        </span></label>
+                </div>
+                <div class="symbol witness">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Witness</div><img src="img/200px/witness.png">
+                        </span></label>
+                </div>
+                <div class="symbol worm">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Worm</div><img src="img/200px/worm.png">
+                        </span></label>
+                </div>
+                <div class="symbol worship">
+                    <label><input type="checkbox"><span>
+                            <div class="callout">Worship</div><img src="img/200px/worship.png">
+                        </span></label>
+                </div>
+                <div></div>
+                <div class="symbol neutral double">
+                    <label><input type="reset"><span>
+                            <div class="callout">Clear</div><img src="img/200px/neutral.png">
+                        </span></label>
+                </div>
             </div>
-            <div class="symbol black-fleet">
-                <label><input type="checkbox"><span><div>Black Fleet</div><img src="img/200px/black_fleet.png"></span></label>
-            </div>
-            <div class="symbol black-garden">
-                <label><input type="checkbox"><span><div>Black Garden</div><img
-                            src="img/200px/black_garden.png"></span></label>
-            </div>
-            <div class="symbol black-heart">
-                <label><input type="checkbox"><span><div>Black Heart</div><img src="img/200px/black_heart.png"></span></label>
-            </div>
-            <div class="symbol commune">
-                <label><input type="checkbox"><span><div>Commune</div><img src="img/200px/commune.png"></span></label>
-            </div>
-            <div class="symbol darkness">
-                <label><input type="checkbox"><span><div>Darkness</div><img src="img/200px/darkness.png"></span></label>
-            </div>
-            <div class="symbol drink">
-                <label><input type="checkbox"><span><div>Drink</div><img src="img/200px/drink.png"></span></label>
-            </div>
-            <div class="symbol earth">
-                <label><input type="checkbox"><span><div>Earth</div><img src="img/200px/earth.png"></span></label>
-            </div>
-            <div class="symbol enter">
-                <label><input type="checkbox"><span><div>Enter</div><img src="img/200px/enter.png"></span></label>
-            </div>
-            <div class="symbol give">
-                <label><input type="checkbox"><span><div>Give</div><img src="img/200px/give.png"></span></label>
-            </div>
-            <div class="symbol grief">
-                <label><input type="checkbox"><span><div>Grief</div><img src="img/200px/grief.png"></span></label>
-            </div>
-            <div class="symbol guardian">
-                <label><input type="checkbox"><span><div>Guardian</div><img src="img/200px/guardian.png"></span></label>
-            </div>
-            <div class="symbol hive">
-                <label><input type="checkbox"><span><div>Hive</div><img src="img/200px/hive.png"></span></label>
-            </div>
-            <div class="symbol kill">
-                <label><input type="checkbox"><span><div>Kill</div><img src="img/200px/kill.png"></span></label>
-            </div>
-            <div class="symbol knowledge">
-                <label><input type="checkbox"><span><div>Knowledge</div><img src="img/200px/knowledge.png"></span></label>
-            </div>
-            <div class="symbol light">
-                <label><input type="checkbox"><span><div>Light</div><img src="img/200px/light.png"></span></label>
-            </div>
-            <div class="symbol love">
-                <label><input type="checkbox"><span><div>Love</div><img src="img/200px/love.png"></span></label>
-            </div>
-            <div class="symbol pyramid">
-                <label><input type="checkbox"><span><div>Pyramid</div><img src="img/200px/pyramid.png"></span></label>
-            </div>
-            <div class="symbol savathun">
-                <label><input type="checkbox"><span><div>Savathun</div><img src="img/200px/savathun.png"></span></label>
-            </div>
-            <div class="symbol scorn">
-                <label><input type="checkbox"><span><div>Scorn</div><img src="img/200px/scorn.png"></span></label>
-            </div>
-            <div class="symbol stop">
-                <label><input type="checkbox"><span><div>Stop</div><img src="img/200px/stop.png"></span></label>
-            </div>
-            <div class="symbol tower">
-                <label><input type="checkbox"><span><div>Tower</div><img src="img/200px/tower.png"></span></label>
-            </div>
-            <div class="symbol traveler">
-                <label><input type="checkbox"><span><div>Traveler</div><img src="img/200px/traveler.png"></span></label>
-            </div>
-            <div class="symbol witness">
-                <label><input type="checkbox"><span><div>Witness</div><img src="img/200px/witness.png"></span></label>
-            </div>
-            <div class="symbol worm">
-                <label><input type="checkbox"><span><div>Worm</div><img src="img/200px/worm.png"></span></label>
-            </div>
-            <div class="symbol worship">
-                <label><input type="checkbox"><span><div>Worship</div><img src="img/200px/worship.png"></span></label>
-            </div>
-            <div></div>
-            <div class="symbol neutral double">
-                <label><input type="reset"><span><div>Clear</div><img src="img/200px/neutral.png"></span></label>
+        </form>
+    </main>
+    <aside class="popup" id="infoPopup">
+        <button class="overlay" data-action="close" data-target="infoPopup"></button>
+        <div class="message">
+            <div>Application - Copyright Sherman Ying 2022.</div>
+            <div>Icons by <a href="https://reddit.com/u/JonathanAndersonDUOc"
+                    target="_blank">/u/JonathanAndersonDUOc</a> - <a href="https://redd.it/tcdofg"
+                    target="_blank">Source</a></div>
+        </div>
+    </aside>
+    <aside class="popup" id="bonusPopup">
+        <button class="overlay" data-action="close" data-target="bonusPopup"></button>
+        <div class="message bonus-tracker-message">
+            <h2 class="bonus-tracker-title">Bonus Chest Tracker and Locations</h2>
+            <div class="bonus-tracker">
+                <div class="bonus-tracker-column">
+                    <div class="divider">&#x25bc; Signpost &#x25bc;</div>
+                    <div class="symbol pyramid">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Pyramid</div><img src="img/200px/pyramid.png">
+                            </span></label>
+                    </div>
+                    <div class="location">At the bottom of the long fall, in the opposite direction of the path to the
+                        first
+                        encounter.</div>
+                    <div class="symbol give">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Give</div><img src="img/200px/give.png">
+                            </span></label>
+                    </div>
+                    <div class="location">In the room after the room with all of the symbol callouts, before the first
+                        encounter room.</div>
+                    <div class="symbol darkness">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Darkness</div><img src="img/200px/darkness.png">
+                            </span></label>
+                    </div>
+                    <div class="location">On the left/Pyramid side of the first encounter room, by the Sphinx statue.
+                    </div>
+                    <div class="divider">&#x25a0; Encounter 1 &#x25a0;</div>
+                </div>
+                <div class="bonus-tracker-column">
+                    <div class="divider">&#x25bc; Encounter 1 &#x25bc;</div>
+                    <div></div>
+                    <div></div>
+                    <div class="symbol traveler">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Traveler</div><img src="img/200px/traveler.png">
+                            </span></label>
+                    </div>
+                    <div class="location">The button is located above the door frame in the room just before the second
+                        encounter.</div>
+                    <div></div>
+                    <div></div>
+                    <div class="divider">&#x25a0; Encounter 2 &#x25a0;</div>
+                </div>
+                <div class="bonus-tracker-column">
+                    <div class="divider">&#x25bc; Encounter 2 &#x25bc;</div>
+                    <div class="symbol worship">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Worship</div><img src="img/200px/worship.png">
+                            </span></label>
+                    </div>
+                    <div class="location">The button and door are on opposite sides of Caretaker's body.</div>
+                    <div class="symbol light">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Light</div><img src="img/200px/light.png">
+                            </span></label>
+                    </div>
+                    <div class="location">The button and door is in the first jumping puzzle platform control room.
+                    </div>
+                    <div class="symbol stop">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Stop</div><img src="img/200px/stop.png">
+                            </span></label>
+                    </div>
+                    <div class="location">The button and door is in the third jumping puzzle platform control room.
+                    </div>
+                    <div class="divider">&#x25a0; Encounter 3 &#x25a0;</div>
+                </div>
+                <div class="bonus-tracker-column">
+                    <div class="divider">&#x25bc; Encounter 3 &#x25bc;</div>
+                    <div class="symbol guardian">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Guardian</div><img src="img/200px/guardian.png">
+                            </span></label>
+                    </div>
+                    <div class="location">After exiting the third encounter and going up the stairs, the button is to the left. The door is nearby, in the direction you came from.</div>
+                    <div class="symbol kill">
+                        <label><input type="checkbox"><span>
+                                <div class="callout">Kill</div><img src="img/200px/kill.png">
+                            </span></label>
+                    </div>
+                    <div class="location">The button is in the vertical platforming section, opening the door in one of
+                        the alcoves.</div>
+                    <div></div>
+                    <div></div>
+                    <div class="divider">&#x25a0; Encounter 4 &#x25a0;</div>
+                </div>
             </div>
         </div>
-    </form>
-    <br>
-    Application Copyright Sherman Ying 2022.
-    Icons by <a href="https://reddit.com/u/JonathanAndersonDUOc" target="_blank">/u/JonathanAndersonDUOc</a> - <a
-        href="https://redd.it/tcdofg" target="_blank">Source</a>
+    </aside>
 </body>
 
 </html>

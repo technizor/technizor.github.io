@@ -186,6 +186,8 @@ header h1 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1em;
+    overflow: scroll;
+    max-height: calc(100vh - 12em)
 }
 
 .bonus-tracker-title {
@@ -194,7 +196,7 @@ header h1 {
 
 .bonus-tracker-column {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 8em 1fr;
     grid-template-rows: auto repeat(3, 1fr) auto;
     gap: 1em;
     background: #222;

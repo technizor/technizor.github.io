@@ -17,143 +17,143 @@
     <main>
         <header>
             <h1>Vow of the Disciple - Symbol Tracker</h1>
+            <button class="control" data-action="encounter" data-target="symbolGrid">3</button>
             <button class="control" data-action="open" data-target="infoPopup">&#x2139;</button>
             <button class="control" data-action="open" data-target="bonusPopup">&#x1f9f0;</button>
         </header>
         <form id="symbolForm" name="symbolForm" action="" method="">
-            <div class="symbol-grid">
-                <div class="symbol ascendant-plane">
+            <div id="symbolGrid" class="symbol-grid" data-encounter="3">
+                <div class="symbol ascendant-plane" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Ascendant Plane</div><img src="img/200px/ascendant_plane.png">
                         </span></label>
                 </div>
-                <div class="symbol black-fleet">
+                <div class="symbol black-fleet" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Black Fleet</div><img src="img/200px/black_fleet.png">
                         </span></label>
                 </div>
-                <div class="symbol black-garden">
+                <div class="symbol black-garden" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Black Garden</div><img src="img/200px/black_garden.png">
                         </span></label>
                 </div>
-                <div class="symbol black-heart">
+                <div class="symbol black-heart" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Black Heart</div><img src="img/200px/black_heart.png">
                         </span></label>
                 </div>
-                <div class="symbol commune">
+                <div class="symbol commune" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Commune</div><img src="img/200px/commune.png">
                         </span></label>
                 </div>
-                <div class="symbol darkness">
+                <div class="symbol darkness" data-e1="alignment">
                     <label><input type="checkbox"><span>
                             <div class="callout">Darkness</div><img src="img/200px/darkness.png">
                         </span></label>
                 </div>
-                <div class="symbol drink">
+                <div class="symbol drink" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Drink</div><img src="img/200px/drink.png">
                         </span></label>
                 </div>
-                <div class="symbol earth">
+                <div class="symbol earth" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Earth</div><img src="img/200px/earth.png">
                         </span></label>
                 </div>
-                <div class="symbol enter">
+                <div class="symbol enter" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Enter</div><img src="img/200px/enter.png">
                         </span></label>
                 </div>
-                <div class="symbol give">
+                <div class="symbol give" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Give</div><img src="img/200px/give.png">
                         </span></label>
                 </div>
-                <div class="symbol grief">
+                <div class="symbol grief" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Grief</div><img src="img/200px/grief.png">
                         </span></label>
                 </div>
-                <div class="symbol guardian">
+                <div class="symbol guardian" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Guardian</div><img src="img/200px/guardian.png">
                         </span></label>
                 </div>
-                <div class="symbol hive">
+                <div class="symbol hive" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Hive</div><img src="img/200px/hive.png">
                         </span></label>
                 </div>
-                <div class="symbol kill">
+                <div class="symbol kill" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Kill</div><img src="img/200px/kill.png">
                         </span></label>
                 </div>
-                <div class="symbol knowledge">
+                <div class="symbol knowledge" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Knowledge</div><img src="img/200px/knowledge.png">
                         </span></label>
                 </div>
-                <div class="symbol light">
+                <div class="symbol light" data-e1="alignment">
                     <label><input type="checkbox"><span>
                             <div class="callout">Light</div><img src="img/200px/light.png">
                         </span></label>
                 </div>
-                <div class="symbol love">
+                <div class="symbol love" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Love</div><img src="img/200px/love.png">
                         </span></label>
                 </div>
-                <div class="symbol pyramid">
+                <div class="symbol pyramid" data-e1="compass">
                     <label><input type="checkbox"><span>
                             <div class="callout">Pyramid</div><img src="img/200px/pyramid.png">
                         </span></label>
                 </div>
-                <div class="symbol savathun">
+                <div class="symbol savathun" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Savathun</div><img src="img/200px/savathun.png">
                         </span></label>
                 </div>
-                <div class="symbol scorn">
+                <div class="symbol scorn" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Scorn</div><img src="img/200px/scorn.png">
                         </span></label>
                 </div>
-                <div class="symbol stop">
+                <div class="symbol stop" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Stop</div><img src="img/200px/stop.png">
                         </span></label>
                 </div>
-                <div class="symbol tower">
+                <div class="symbol tower" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Tower</div><img src="img/200px/tower.png">
                         </span></label>
                 </div>
-                <div class="symbol traveler">
+                <div class="symbol traveler" data-e1="compass">
                     <label><input type="checkbox"><span>
                             <div class="callout">Traveler</div><img src="img/200px/traveler.png">
                         </span></label>
                 </div>
-                <div class="symbol witness">
+                <div class="symbol witness" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Witness</div><img src="img/200px/witness.png">
                         </span></label>
                 </div>
-                <div class="symbol worm">
+                <div class="symbol worm" data-e1="symbol">
                     <label><input type="checkbox"><span>
                             <div class="callout">Worm</div><img src="img/200px/worm.png">
                         </span></label>
                 </div>
-                <div class="symbol worship">
+                <div class="symbol worship" data-e1="room">
                     <label><input type="checkbox"><span>
                             <div class="callout">Worship</div><img src="img/200px/worship.png">
                         </span></label>
                 </div>
-                <div></div>
-                <div class="symbol neutral double">
+                <div class="symbol neutral last">
                     <label><input type="reset"><span>
                             <div class="callout">Clear</div><img src="img/200px/neutral.png">
                         </span></label>

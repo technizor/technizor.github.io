@@ -16,7 +16,7 @@ a[href] {
 header {
     display: grid;
     grid-template-rows: 100%;
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: 1fr repeat(3, auto);
     align-items: center;
     gap: 1em;
 }
@@ -46,16 +46,28 @@ header h1 {
     height: calc(100vh - 7em);
 }
 
+.symbol-grid .last {
+    grid-column: -2;
+}
+
 /* Grid Row/Column Layouts */
 .symbol-grid {
     grid-template-columns: repeat(7, 1fr);
     grid-template-rows: repeat(4, 1fr);
+}
+.symbol-grid[data-encounter="1"] {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 }
 
 @media screen and (max-aspect-ratio: 3/4) {
     .symbol-grid {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(6, 1fr);
+    }
+    .symbol-grid[data-encounter="1"] {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
     }
 }
 
@@ -64,6 +76,10 @@ header h1 {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: repeat(7, 1fr);
     }
+    .symbol-grid[data-encounter="1"] {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(5, 1fr);
+    }
 }
 
 @media screen and (min-aspect-ratio: 3/4) and (max-aspect-ratio: 16/9) {
@@ -71,12 +87,20 @@ header h1 {
         grid-template-columns: repeat(6, 1fr);
         grid-template-rows: repeat(5, 1fr);
     }
+    .symbol-grid[data-encounter="1"] {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+    }
 }
 
 @media screen and (min-aspect-ratio: 16/9) {
     .symbol-grid {
         grid-template-columns: repeat(7, 1fr);
         grid-template-rows: repeat(4, 1fr);
+    }
+    .symbol-grid[data-encounter="1"] {
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
     }
 }
 
@@ -139,6 +163,13 @@ header h1 {
 
 .symbol input:checked:hover+span {
     background-color: #888;
+}
+
+/* Selective Display */
+.symbol-grid[data-encounter="1"] .symbol[data-e1="compass"],
+.symbol-grid[data-encounter="1"] .symbol[data-e1="room"],
+.symbol-grid[data-encounter="1"] .symbol[data-e1="alignment"] {
+    display: none;
 }
 
 /* Popup Functionality */
